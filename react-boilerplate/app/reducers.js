@@ -21,6 +21,11 @@ const routeInitialState = fromJS({
   location: null,
 });
 
+const userInitialState = fromJS({
+  isAuthenticated: false,
+  isAuthenticating: true,
+});
+
 /**
  * Merge route into the global application state
  */
@@ -36,6 +41,13 @@ function routeReducer(state = routeInitialState, action) {
   }
 }
 
+function userReducer(state = userInitialState, action) {
+  switch (action.type) {
+    default:
+      return state;
+  }
+}
+
 /**
  * Creates the main reducer with the dynamically injected ones
  */
@@ -43,6 +55,7 @@ export default function createReducer(injectedReducers) {
   return combineReducers({
     route: routeReducer,
     language: languageProviderReducer,
+    user: userReducer,
     ...injectedReducers,
   });
 }

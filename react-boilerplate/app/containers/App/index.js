@@ -12,18 +12,30 @@
  */
 
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import Routes from './routes';
+import { makeSelectUser } from './selectors';
 
-import HomePage from 'containers/HomePage/Loadable';
-import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
-export default function App() {
+function App({ user }) {
   return (
     <div>
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route component={NotFoundPage} />
-      </Switch>
+      <Routes props={user} />
     </div>
   );
 }
+
+App.PropTypes = {
+  user: React.PropTypes.object,
+};
+
+const mapStateToProps = makeSelectUser();
+
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch,
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

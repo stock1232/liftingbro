@@ -14,6 +14,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
+import Amplify from 'aws-amplify';
+import config from 'config.js';
 import 'sanitize.css/sanitize.css';
 
 // Import root app
@@ -44,6 +46,32 @@ import { translationMessages } from './i18n';
 
 // Import CSS reset and Global Styles
 import './global-styles';
+
+//config AWS amplify
+
+Amplify.configure({
+  Auth: {
+    mandatorySignIn: true,
+    region: config.cognito.REGION,
+    userPoolId: config.cognito.USER_POOL_ID,
+    identityPoolId: config.cognito.IDENTITY_POOL_ID,
+    userPoolWebClientId: config.cognito.APP_CLIENT_ID,
+  },
+  Storage: {
+    region: config.s3.REGION,
+    bucket: config.s3.BUCKET,
+    identityPoolId: config.cognito.IDENTITY_POOL_ID,
+  },
+  API: {
+    endpoints: [
+      {
+        name: 'bro',
+        endpoint: config.apiGateway.URL,
+        region: config.apiGateway.REGION,
+      },
+    ],
+  },
+});
 
 // Create redux store with history
 const initialState = {};
