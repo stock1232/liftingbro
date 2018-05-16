@@ -26,7 +26,7 @@ function App({ user }) {
   );
 }
 
-App.PropTypes = {
+App.propTypes = {
   user: React.PropTypes.object,
 };
 
