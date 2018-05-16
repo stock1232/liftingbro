@@ -14,7 +14,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Routes from './routes';
+import Routes from '../Routes';
+import { createSelector } from 'reselect';
 import { makeSelectUser } from './selectors';
 
 
@@ -30,7 +31,11 @@ App.propTypes = {
   user: React.PropTypes.object,
 };
 
-const mapStateToProps = makeSelectUser();
+const mapStateToProps = createSelector(
+  makeSelectUser(),
+  (user) => ({ user })
+);
+
 
 function mapDispatchToProps(dispatch) {
   return {
