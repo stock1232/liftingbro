@@ -1,6 +1,6 @@
 /**
  *
- * LoginContainer
+ * NavigationContainer
  *
  */
 
@@ -12,46 +12,40 @@ import { compose } from 'redux';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import makeSelectLoginContainer from './selectors';
+import makeSelectNavigationContainer from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
-export class LoginContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
-  static PropTypes = {
-    save: PropTypes.func.isRequired,
-    submitErrors: PropTypes.object,
-  }
+export class NavigationContainer extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
       <div>
-        <Login onSubmit={this.props.save} submitErrors={this.props.submitErrors} {...this.props} />
       </div>
     );
   }
 }
 
-LoginContainer.propTypes = {
+NavigationContainer.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  logincontainer: makeSelectLoginContainer(),
+  navigationcontainer: makeSelectNavigationContainer(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
-    cancelLogin: () => dispatch(cancelLogin()),
-    save: (values) => dispatch(signIn(values)),
+    dispatch,
   };
 }
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withReducer = injectReducer({ key: 'loginContainer', reducer });
-const withSaga = injectSaga({ key: 'loginContainer', saga });
+const withReducer = injectReducer({ key: 'navigationContainer', reducer });
+const withSaga = injectSaga({ key: 'navigationContainer', saga });
 
 export default compose(
   withReducer,
   withSaga,
   withConnect,
-)(LoginContainer);
+)(NavigationContainer);

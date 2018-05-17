@@ -5,6 +5,7 @@
 import { combineReducers } from 'redux-immutable';
 import { fromJS } from 'immutable';
 import { LOCATION_CHANGE } from 'react-router-redux';
+import { SET_USER_SESSION } from 'containers/Routes/constants'
 
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
 
@@ -21,10 +22,7 @@ const routeInitialState = fromJS({
   location: null,
 });
 
-const userInitialState = fromJS({
-  isAuthenticated: false,
-  isAuthenticating: true,
-});
+const userInitialState = fromJS({});
 
 /**
  * Merge route into the global application state
@@ -43,6 +41,8 @@ function routeReducer(state = routeInitialState, action) {
 
 function userReducer(state = userInitialState, action) {
   switch (action.type) {
+    case SET_USER_SESSION:
+      return state.set('isAuthenticated', true)
     default:
       return state;
   }

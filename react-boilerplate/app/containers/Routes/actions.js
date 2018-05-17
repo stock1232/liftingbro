@@ -5,11 +5,26 @@
  */
 
 import {
-  DEFAULT_ACTION,
+  CHECK_USER,
+  SET_USER_SESSION,
+  USER_SESSION_FAIL,
 } from './constants';
 
-export function defaultAction() {
+export function checkUser() {
   return {
-    type: DEFAULT_ACTION,
+    type: CHECK_USER,
+  };
+}
+
+export function setUserSession() {
+  return {
+    type: SET_USER_SESSION,
+  };
+}
+
+export function userSessionFail(message) {
+  return {
+    type: USER_SESSION_FAIL,
+    message,
   };
 }

@@ -15,27 +15,20 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Routes from '../Routes';
-import { createSelector } from 'reselect';
-import { makeSelectUser } from './selectors';
 
 
-function App({ user }) {
+
+function App() {
   return (
     <div>
-      <Routes props={user} />
+      <Routes />
     </div>
   );
 }
 
 App.propTypes = {
-  user: React.PropTypes.object,
+
 };
-
-const mapStateToProps = createSelector(
-  makeSelectUser(),
-  (user) => ({ user })
-);
-
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -43,4 +36,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapDispatchToProps)(App);

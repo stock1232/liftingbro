@@ -24,29 +24,36 @@ import injectReducer from 'utils/injectReducer';
 import makeSelectRoutes from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import { checkUser } from './actions';
 
 export class Routes extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+
+  componentDidMount() {
+    this.props.checkUser();
+  }
   render() {
+    const { user } = this.props;
     return (
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <UnAuthRouter component={NotFoundPage} props={props} />
+        <UnAuthRouter component={NotFoundPage} props={user} />
      </Switch>
     );
   }
 }
 
 Routes.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  checkUser: PropTypes.func.isRequired,
+  user: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
-  routes: makeSelectRoutes(),
+  user: makeSelectRoutes(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+    checkUser: () => dispatch(checkUser()),
   };
 }
 

@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
 /**
- * Direct selector to the routes state domain
+ * Direct selector to the user state domain
  */
 const selectRoutesDomain = (state) => state.get('user');
 
