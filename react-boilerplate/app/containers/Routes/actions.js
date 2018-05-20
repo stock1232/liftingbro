@@ -8,7 +8,15 @@ import {
   CHECK_USER,
   SET_USER_SESSION,
   USER_SESSION_FAIL,
+  SET_USER_AUTH,
 } from './constants';
+
+
+export function setUserAuth() {
+  return {
+    type: SET_USER_AUTH,
+  };
+}
 
 export function checkUser() {
   return {

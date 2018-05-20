@@ -1,7 +1,7 @@
 import { CHECK_USER } from 'constants';
 import { call, put, select, all, takeLatest } from 'redux-saga/effects';
 import { Auth } from 'aws-amplify';
-import { setUserSession, userSessionFail } from './actions';
+import { setUserSession, userSessionFail, setUserAuth } from './actions';
 
 function* getSession() {
   try {
@@ -11,6 +11,7 @@ function* getSession() {
   } catch (e) {
     yield put(userSessionFail(e));
   }
+  yield put(setUserAuth());
 }
 
 export function* checkUser() {

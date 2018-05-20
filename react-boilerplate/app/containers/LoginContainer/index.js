@@ -10,14 +10,17 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
+
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import makeSelectLoginContainer from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import Login from '../../components/Login/Loadable';
+import { cancelLogin, signIn } from './actions';
 
 export class LoginContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
-  static PropTypes = {
+  static propTypes = {
     save: PropTypes.func.isRequired,
     submitErrors: PropTypes.object,
   }
@@ -29,10 +32,6 @@ export class LoginContainer extends React.Component { // eslint-disable-line rea
     );
   }
 }
-
-LoginContainer.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-};
 
 const mapStateToProps = createStructuredSelector({
   logincontainer: makeSelectLoginContainer(),

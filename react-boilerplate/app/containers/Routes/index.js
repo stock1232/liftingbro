@@ -13,6 +13,8 @@ import { compose } from 'redux';
 import { Route, Switch } from 'react-router-dom';
 import HomePage from 'containers/HomePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import LoginContainer from 'containers/LoginContainer/Loadable';
+import NavigationContainer from 'containers/NavigationContainer/Loadable';
 import AuthRouter from '../../components/AuthRouter';
 import UnAuthRouter from '../../components/UnAuthRouter';
 
@@ -36,7 +38,8 @@ export class Routes extends React.PureComponent { // eslint-disable-line react/p
     return (
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <UnAuthRouter component={NotFoundPage} props={user} />
+        <Route path="/login/" component={LoginContainer} />
+        <Route component={NotFoundPage} props={user} />
      </Switch>
     );
   }

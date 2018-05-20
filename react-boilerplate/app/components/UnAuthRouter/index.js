@@ -16,5 +16,8 @@ export default ({ component: C, props: cProps, ...rest }) =>
     render={props =>
       cProps.isAuthenticated
         ? <C {...props} {...cProps} />
-        : <Redirect to="/" />}
+        : <Redirect to={{
+          pathname: '/',
+          state: { from: props.location }
+        }} />}
   />;
