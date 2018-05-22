@@ -5,7 +5,7 @@ import { reducer as formReducer } from 'redux-form/immutable';
 import { combineReducers } from 'redux-immutable';
 import { fromJS } from 'immutable';
 import { LOCATION_CHANGE } from 'react-router-redux';
-import { SET_USER_SESSION, SET_USER_AUTH } from 'containers/Routes/constants';
+import { SET_USER_SESSION, SET_USER_AUTH, SET_USER_LOGOUT, USER_LOGOUT_SUCCESS } from 'containers/App/constants';
 import { CHECK_USER_SUCCEEDED } from 'containers/LoginContainer/constants';
 
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
@@ -50,7 +50,9 @@ function userReducer(state = userInitialState, action) {
     case SET_USER_AUTH:
       return state.set('isAuthenticating', false);
     case CHECK_USER_SUCCEEDED:
-      return state.set('ID', action.user);
+      return state.set('ID', action.user.username);
+    case USER_LOGOUT_SUCCESS:
+      return state.set('isAuthenticated', action.checked).set('ID', null);
     default:
       return state;
   }

@@ -13,27 +13,53 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { compose } from 'redux';
 import PropTypes from 'prop-types';
+import injectSaga from 'utils/injectSaga';
 import Routes from '../Routes';
+import { makeSelectCurrentUser } from './selectors';
+import saga from './saga';
+import { checkUser } from './actions';
+import NavigationContainer from '../NavigationContainer/Loadable';
 
 
+export class App extends React.PureComponent {
 
-function App() {
-  return (
-    <div>
-      <Routes />
-    </div>
-  );
+  componentDidMount() {
+    this.props.checkUser();
+  }
+  render() {
+    const { user } = this.props;
+    return (
+      !user.isAuthenticating &&
+      <div>
+        <NavigationContainer />
+        <Routes user={user} />
+      </div>
+    );
+  }
 }
-
 App.propTypes = {
-
+  checkUser: PropTypes.func.isRequired,
+  user: PropTypes.object,
 };
+
+const mapStateToProps = createStructuredSelector({
+  user: makeSelectCurrentUser(),
+});
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+    checkUser: () => dispatch(checkUser()),
   };
 }
 
-export default connect(mapDispatchToProps)(App);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
+
+const withSaga = injectSaga({ key: 'app', saga });
+
+export default compose(
+  withSaga,
+  withConnect,
+)(App);

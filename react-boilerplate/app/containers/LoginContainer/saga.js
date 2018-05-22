@@ -24,14 +24,9 @@ function* checkUserSignIn(action) {
     //yield put(checkUserFailed(e.message));
   }
 
-
-
-
-
-
-export default function* rootSaga() {
+export default function* rootLoginSaga() {
   yield all([
     takeLatest(SIGN_IN, checkUserSignIn),
     takeLatest(CANCEL_LOGIN, handleDone),
-  ])
+  ]);
 }

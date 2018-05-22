@@ -34,7 +34,7 @@ export function checkUserFailed(message) {
 export function signIn(values) {
   return {
     type: SIGN_IN,
-    username: values.get('email'),
+    email: values.get('email'),
     password: values.get('password'),
   };
 }

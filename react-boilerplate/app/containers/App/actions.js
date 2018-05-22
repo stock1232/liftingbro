@@ -1,8 +1,4 @@
-/*
- *
- * Routes actions
- *
- */
+
 
 import {
   CHECK_USER,

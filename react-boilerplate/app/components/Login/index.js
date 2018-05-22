@@ -17,17 +17,20 @@ import styles from './styles.css';
 const renderTextField = ({
   input,
   label,
-  errorText,
+  warning,
   meta: { touched, error },
   ...custom
 }) => (
   <div>
   <TextField
     label={label}
-    errorText={touched && error}
     {...input}
     {...custom}
   />
+  <div>
+    {touched &&
+        ((error && <span style={{fontSize: '12px'}} >{error}</span>) || (warning && <span>{warning}</span>))}
+  </div>
   </div>
 );
 const validate = (values) => {

@@ -3,9 +3,13 @@ import { call, put, select, all, takeLatest } from 'redux-saga/effects';
 import { Auth } from 'aws-amplify';
 import { setUserSession, userSessionFail, setUserAuth } from './actions';
 
-function* getSession() {
+
+function checkUserSession() {
+  return Auth.currentSession();
+}
+export function* getSession() {
   try {
-    if (yield Auth.currentSession()) {
+    if (yield call(checkUserSession)) {
       yield put(setUserSession());
     }
   } catch (e) {
@@ -15,9 +19,8 @@ function* getSession() {
 }
 
 export function* checkUser() {
-  yield* takeLatest(CHECK_USER, getSession);
+  yield takeLatest(CHECK_USER, getSession);
 }
-
 export default function* rootSaga() {
   yield all([
     checkUser(),
