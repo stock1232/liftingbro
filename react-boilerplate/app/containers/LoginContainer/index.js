@@ -13,7 +13,7 @@ import { compose } from 'redux';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import makeSelectLoginContainer from './selectors';
+import { makeSelectLoginContainer, makeSelectLoginForm } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import Login from '../../components/Login/Loadable';
@@ -22,12 +22,13 @@ import { cancelLogin, signIn } from './actions';
 export class LoginContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
     save: PropTypes.func.isRequired,
-    submitErrors: PropTypes.object,
+    login: PropTypes.object,
   }
   render() {
+    const { login } = this.props;
     return (
       <div>
-        <Login onSubmit={this.props.save} submitErrors={this.props.submitErrors} {...this.props} />
+        <Login onSubmit={this.props.save} submitErrors={login.submitErrors} {...this.props} />
       </div>
     );
   }
@@ -35,6 +36,7 @@ export class LoginContainer extends React.Component { // eslint-disable-line rea
 
 const mapStateToProps = createStructuredSelector({
   logincontainer: makeSelectLoginContainer(),
+  login: makeSelectLoginForm(),
 });
 
 function mapDispatchToProps(dispatch) {

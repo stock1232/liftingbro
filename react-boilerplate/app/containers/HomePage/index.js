@@ -10,6 +10,7 @@
  */
 
 import React from 'react';
+import Navigation from '../../components/Navigation';
 
 
 export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -17,6 +18,7 @@ export default class HomePage extends React.PureComponent { // eslint-disable-li
     return (
       <div>
         <h1> HomePage</h1>
+        <Navigation />
       </div>
     );
   }

@@ -32,34 +32,76 @@ const styles = {
     marginRight: 20,
   },
 };
-function Navigation({ user, classes, logout  }) {
+class Navigation extends React.Component {
+  state = {
+    anchorEl: null,
+  };
+
+  handleClick = event => {
+    this.setState({ anchorEl: event.currentTarget });
+  };
+
+  handleClose = () => {
+    this.setState({ anchorEl: null });
+  };
+  render() {
+    const { classes } = this.props;
+    const { anchorEl } = this.state;
   return (
+
     <div className={classes.root}>
-        <FormGroup>
-          <FormControlLabel
-            control={
-              user.isAuthenticated && <Switch checked={user.isAuthenticated} onChange={logout} aria-label="LoginSwitch" />
-            }
-            label={user.isAuthenticated && 'Logout'}
-          />
-        </FormGroup>
         <AppBar position="static">
           <Toolbar>
             <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
               <MenuIcon />
             </IconButton>
             <Typography variant="title" color="inherit" className={classes.flex}>
-              Title
+              Lifting Bro
             </Typography>
+
+              <div>
+                <IconButton
+                  aria-owns={anchorEl ? 'menu-appbar' : null}
+                  aria-haspopup="true"
+                  onClick={this.handleClick}
+                  color="inherit"
+                >
+                  <AccountCircle />
+                </IconButton>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorEl}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={Boolean(anchorEl)}
+                  onClose={this.handleClose}
+                >
+
+                  <MenuItem onClick={this.handleClose}>Log In</MenuItem>
+
+
+                  <MenuItem onClick={this.handleClose}>Profile</MenuItem>
+                  <MenuItem onClick={this.handleClose}>My account</MenuItem>
+
+
+                </Menu>
+              </div>
+
             </Toolbar>
         </AppBar>
       </div>
   );
+  }
 }
 
 Navigation.propTypes = {
-  user: PropTypes.object,
-  logout: PropTypes.func.isRequired,
+
 };
 
 export default withStyles(styles)(Navigation);

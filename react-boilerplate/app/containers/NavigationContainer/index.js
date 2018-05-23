@@ -45,9 +45,20 @@ const styles = {
 };
 
 class NavigationContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  constructor() {
+    super();
+
+    this.state = {
+      anchorEl2: null,
+    };
+  }
+
+  handleClick = (event) => {
+    this.setState({ anchorEl2: event.currentTarget });
+  }
 
   render() {
-    const { user, classes, navigation } = this.props;
+    const { user, classes, navigation, handleMenu } = this.props;
 
     return (
     <div className={classes.root}>
@@ -74,7 +85,7 @@ class NavigationContainer extends React.Component { // eslint-disable-line react
                 <IconButton
                   aria-owns={navigation.anchorEl ? 'menu-appbar' : null}
                   aria-haspopup="true"
-                  onClick={this.props.handleMenu}
+                  onClick={handleMenu}
                   color="inherit"
                 >
                   <AccountCircle />

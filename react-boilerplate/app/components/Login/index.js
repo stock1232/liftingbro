@@ -35,8 +35,16 @@ const renderTextField = ({
 );
 const validate = (values) => {
   const errors = {};
-  if (!values.get('email')) {
-    errors.email = 'Required';
+  const requiredFields = ['email', 'password'];
+
+  requiredFields.forEach((field) => {
+    if (!values.get(field)) {
+      errors[field] = 'Required';
+    }
+  });
+
+  if (values.get('email') && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.get('email'))) {
+    errors.email = 'Invalid email address';
   }
   return errors;
 };
@@ -48,7 +56,9 @@ function Login({ handleSubmit, submitting, cancelLogin, submitErrors, dirty, pri
         <form>
           <Field name="email" component={renderTextField} label="Email" />
           <Field name="password" component={renderTextField} label="Password" type="password" />
-
+          <div className={styles.error}>
+          {submitErrors.get('message')}
+          </div>
         </form>
         <div className={styles.actionContainer}>
              <div>
