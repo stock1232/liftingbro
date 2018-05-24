@@ -68,10 +68,14 @@ Identify problems that occur and try to resolve them by rolling back the respect
 
 - `npm run clean`
 - `npm run generate component` TestComp /w defaults
-- `npm run generate container TestPage` /w defaults
-- `npm run generate route` to TestPage - /test
-    
-    Use TestComp on TestPage -> bypass all tests in TestComp and TestPage (set true = true)
+- `npm run generate container` TestPage /w defaults
+- Add a new route in the App container:
+```js
+import TestPage from 'containers/TestPage/Loadable';
+
+-<Route path="/test" component={TestPage} />
+```
+- Use TestComp on TestPage -> bypass all tests in TestComp and TestPage (set true = true)
 - `npm start` > `localhost:3000/test`
 - `npm test` (expect test failure due to incomplete test coverage)
 - `npm run build`
@@ -248,3 +252,68 @@ react-test-renderer                                     15.5.4
    @ multi eventsource-polyfill webpack-hot-middleware/client?reload=true ./app/app.js
 
    ***image-webpack-loader  2.0.0  →   3.2.0 <--- Rolled back***
+
+   5/23 update
+
+   aws-amplify                                      ^0.3.4  →   ^0.4.1
+ babel-polyfill                                   6.23.0  →   6.26.0
+ chalk                                            ^1.1.3  →   ^2.4.1
+ compression                                       1.6.2  →    1.7.2
+ cross-env                                         5.0.0  →    5.1.6
+ express                                          4.15.3  →   4.16.3
+ fontfaceobserver                                  2.0.9  →   2.0.13
+ history                                           4.6.3  →    4.7.2
+ hoist-non-react-statics                           2.1.1  →    2.5.0
+ immutable                                         3.8.1  →    3.8.2
+ invariant                                         2.2.2  →    2.2.4
+ lodash                                           4.17.4  →  4.17.10
+ prop-types                                      15.5.10  →   15.6.1
+ react                                            16.3.0  →   16.4.0
+ react-dom                                        16.3.0  →   16.4.0
+ react-helmet                                      5.1.3  →    5.2.0
+ react-intl                                        2.3.0  →    2.4.0
+ react-loadable                                    4.0.3  →    5.4.0
+ react-redux                                       5.0.5  →    5.0.7
+ react-router-dom                                  4.1.1  →    4.2.2
+ redux                                             3.6.0  →    4.0.0
+ redux-saga                                       0.15.3  →   0.16.0
+ sanitize.css                                      4.1.0  →    5.0.0
+ styled-components                                 2.0.0  →    3.2.6
+ webpack-cli                                      2.0.13  →    2.1.4
+ whatwg-fetch                                      2.0.3  →    2.0.4
+ babel-cli                                        6.24.1  →   6.26.0
+ babel-core                                       6.24.1  →   6.26.3
+ babel-eslint                                      7.2.3  →    8.2.3
+ babel-loader                                      7.1.3  →    7.1.4
+ babel-plugin-dynamic-import-node                  1.0.2  →    1.2.0
+ babel-plugin-react-intl                           2.3.1  →    2.4.0
+ babel-plugin-react-transform                      2.0.2  →    3.0.0
+ babel-plugin-styled-components                    1.1.4  →    1.5.1
+ babel-plugin-transform-es2015-modules-commonjs   6.24.1  →   6.26.2
+ babel-plugin-transform-react-remove-prop-types    0.4.5  →   0.4.13
+ babel-preset-env                                  1.5.1  →    1.7.0
+ circular-dependency-plugin                        3.0.0  →    5.0.2
+ coveralls                                        2.13.1  →    3.0.1
+ css-loader                                      0.28.10  →  0.28.11
+ eslint                                           3.19.0  →   4.19.1
+ eslint-config-airbnb                             15.0.1  →   16.1.0
+ eslint-config-airbnb-base                        11.2.0  →   12.1.0
+ eslint-import-resolver-webpack                    0.8.3  →   0.10.0
+ eslint-plugin-import                              2.7.0  →   2.12.0
+ eslint-plugin-jsx-a11y                            5.0.3  →    6.0.3
+ eslint-plugin-react                               7.0.1  →    7.8.2
+ eslint-plugin-redux-saga                          0.3.0  →    0.8.0
+ html-webpack-plugin                               3.0.4  →    3.2.0
+ jest-cli                                         20.0.4  →   22.4.4
+ lint-staged                                       3.5.1  →    7.1.2
+ ngrok                                             2.2.9  →    3.0.1
+ node-plop                                         0.7.0  →   0.13.0
+ offline-plugin                                    4.9.0  →    5.0.3
+ plop                                              1.8.0  →    2.0.0
+ react-test-renderer                              15.6.1  →   16.4.0
+ rimraf                                            2.6.1  →    2.6.2
+ shelljs                                           0.7.8  →    0.8.2
+ style-loader                                     0.20.2  →   0.21.0
+ webpack                                           4.4.1  →    4.8.3
+ webpack-dev-middleware                            3.1.0  →    3.1.3
+ webpack-hot-middleware                           2.21.2  →   2.22.2

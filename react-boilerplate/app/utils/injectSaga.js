@@ -4,6 +4,8 @@ import hoistNonReactStatics from 'hoist-non-react-statics';
 
 import getInjectors from './sagaInjectors';
 
+/* eslint-disable no-undef */
+
 /**
  * Dynamically injects a saga, passes component's props as saga arguments
  *
@@ -42,5 +44,3 @@ export default ({ key, saga, mode }) => (WrappedComponent) => {
     }
   }
 
-  return hoistNonReactStatics(InjectSaga, WrappedComponent);
-};

@@ -45,17 +45,6 @@ const styles = {
 };
 
 class NavigationContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
-  constructor() {
-    super();
-
-    this.state = {
-      anchorEl2: null,
-    };
-  }
-
-  handleClick = (event) => {
-    this.setState({ anchorEl2: event.currentTarget });
-  }
 
   render() {
     const { user, classes, navigation, handleMenu } = this.props;
@@ -105,7 +94,10 @@ class NavigationContainer extends React.Component { // eslint-disable-line react
                   onClose={this.props.handleClose}
                 >
                   {user.isAuthenticated ?
+                  <span>
                   <MenuItem onClick={this.props.handleClose}>Log In</MenuItem>
+                  <MenuItem onClick={this.props.handleClose}>Sign In</MenuItem>
+                  </span>
                   :
                   <span>
                   <MenuItem onClick={this.props.handleClose}>Profile</MenuItem>
