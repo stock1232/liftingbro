@@ -16,10 +16,10 @@ import injectReducer from 'utils/injectReducer';
 import { makeSelectLoginContainer, makeSelectLoginForm } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import Login from '../../components/Login/Loadable';
+import Login from '../../components/Login';
 import { cancelLogin, signIn } from './actions';
 
-export class LoginContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
+class LoginContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
   static propTypes = {
     save: PropTypes.func.isRequired,
     login: PropTypes.object,
@@ -46,10 +46,11 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
-
 const withReducer = injectReducer({ key: 'loginContainer', reducer });
 const withSaga = injectSaga({ key: 'loginContainer', saga });
+
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
+
 
 export default compose(
   withReducer,

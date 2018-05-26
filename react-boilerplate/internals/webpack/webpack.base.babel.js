@@ -19,6 +19,10 @@ module.exports = (options) => ({
     publicPath: '/',
   }, options.output), // Merge with env dependent settings
   optimization: options.optimization,
+  node: {
+    fs: 'empty',
+    child_process: 'empty',
+  },
   module: {
     rules: [
       {

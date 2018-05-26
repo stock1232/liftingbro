@@ -1,7 +1,8 @@
-import { CHECK_USER } from 'constants';
+
 import { call, put, select, all, takeLatest } from 'redux-saga/effects';
 import { Auth } from 'aws-amplify';
 import { setUserSession, userSessionFail, setUserAuth } from './actions';
+import { CHECK_USER } from './constants';
 
 
 function checkUserSession() {

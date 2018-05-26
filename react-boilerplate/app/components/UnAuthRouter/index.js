@@ -14,7 +14,7 @@ export default ({ component: C, props: cProps, ...rest }) =>
   <Route
     {...rest}
     render={props =>
-      cProps.isAuthenticated
+      cProps.isAutheniticated
         ? <C {...props} {...cProps} />
         : <Redirect to={{
           pathname: '/',

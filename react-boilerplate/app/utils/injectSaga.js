@@ -43,4 +43,5 @@ export default ({ key, saga, mode }) => (WrappedComponent) => {
       return <WrappedComponent {...this.props} />;
     }
   }
-
+  return hoistNonReactStatics(InjectSaga, WrappedComponent);
+}

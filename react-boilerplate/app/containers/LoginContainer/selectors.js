@@ -31,7 +31,7 @@ const selectLoginForm = () => (state) => ({
 
 const makeSelectLoginContainer = () => createSelector(
   selectLoginContainerDomain,
-  (substate) => substate.toJS()
+  (substate) => substate
 );
 
 const makeSelectLoginForm = () => createSelector(

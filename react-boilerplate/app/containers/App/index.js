@@ -12,37 +12,35 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import PropTypes from 'prop-types';
+
+
 import injectSaga from 'utils/injectSaga';
 import Routes from '../Routes';
-import { makeSelectCurrentUser } from './selectors';
 import saga from './saga';
 import { checkUser } from './actions';
-import NavigationContainer from '../NavigationContainer/Loadable';
+import { makeSelectCurrentUser } from './selectors';
 
-
-export class App extends React.PureComponent {
+class App extends React.Component {
 
   componentDidMount() {
-    this.props.checkUser();
+    checkUser();
   }
   render() {
     const { user } = this.props;
     return (
-      !user.isAuthenticating &&
-      <div>
-        <NavigationContainer />
-        <Routes user={user} />
-      </div>
+
+      <Routes user={user} />
     );
   }
 }
 App.propTypes = {
-  checkUser: PropTypes.func.isRequired,
   user: PropTypes.object,
+  checkUser: PropTypes.func,
+
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -55,9 +53,11 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 const withSaga = injectSaga({ key: 'app', saga });
+
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
+
 
 export default compose(
   withSaga,

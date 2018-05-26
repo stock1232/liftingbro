@@ -33,4 +33,5 @@ export default ({ key, reducer }) => (WrappedComponent) => {
       return <WrappedComponent {...this.props} />;
     }
   }
-
+  return hoistNonReactStatics(ReducerInjector, WrappedComponent);
+}

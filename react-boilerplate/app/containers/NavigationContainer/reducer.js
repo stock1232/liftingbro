@@ -4,13 +4,13 @@
  *
  */
 
-import { fromJS } from 'immutable';
+import { Map } from 'immutable';
 import {
   HANDLE_CLOSE,
   HANDLE_MENU,
 } from './constants';
 
-const initialState = fromJS({
+const initialState = Map({
   anchorEl: null,
 });
 
