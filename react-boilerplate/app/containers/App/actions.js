@@ -11,9 +11,6 @@ import {
 export function setUserAuth() {
   return {
     type: SET_USER_AUTH,
-    data: {
-      isAuthenticating: false,
-    },
   };
 }
 
@@ -23,12 +20,10 @@ export function checkUser() {
   };
 }
 
-export function setUserSession() {
+export function setUserSession(user) {
   return {
     type: SET_USER_SESSION,
-    data: {
-      isAuthenticated: true,
-    },
+    user,
   };
 }
 

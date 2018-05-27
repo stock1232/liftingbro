@@ -23,6 +23,7 @@ import Routes from '../Routes';
 import saga from './saga';
 import { checkUser } from './actions';
 import { makeSelectCurrentUser } from './selectors';
+import NavigationContainer from '../NavigationContainer/Loadable';
 
 class App extends React.Component {
 
@@ -32,11 +33,15 @@ class App extends React.Component {
   render() {
     const { user } = this.props;
     return (
-
-      <Routes user={user} />
+      !user.get('isAutheniticating') &&
+      <div>
+        <NavigationContainer />
+        <Routes user={user} />
+      </div>
     );
   }
 }
+
 App.propTypes = {
   user: PropTypes.object,
   checkUser: PropTypes.func,

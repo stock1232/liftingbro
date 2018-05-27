@@ -23,7 +23,7 @@ import languageProviderReducer from 'containers/LanguageProvider/reducer';
 const userInitialState = Map({
   isAutheniticated: false,
   isAutheniticating: true,
-  ID: null,
+  SessionInfo: null,
 });
 
 /**
@@ -42,11 +42,13 @@ const routeReducer = combineReducers({ location });
 export function user(state = userInitialState, action) {
   switch (action.type) {
     case SET_USER_SESSION:
-      return state.set('isAutheniticated', true);
+      return state
+        .set('isAutheniticated', true)
+        .set('SessionInfo', action.user);
     case SET_USER_AUTH:
       return state.set('isAutheniticating', false);
     case CHECK_USER_SUCCEEDED:
-      return state.set('ID', action.user);
+      return state;
     case USER_LOGOUT_SUCCESS:
       return state;
     default:

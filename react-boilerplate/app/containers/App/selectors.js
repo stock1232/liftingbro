@@ -21,7 +21,7 @@ const makeSelectLocation = () => createSelector(
 
 const makeSelectCurrentUser = () => createSelector(
   selectUser,
-  (substate) => substate.toJS()
+  (substate) => substate
 );
 
 export default makeSelectLocation;

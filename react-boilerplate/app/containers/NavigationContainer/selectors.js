@@ -16,7 +16,7 @@ const selectNavigationContainerDomain = (state) => state.get('navigationContaine
 
 const makeSelectNavigationContainer = () => createSelector(
   selectNavigationContainerDomain,
-  (substate) => substate.toJS()
+  (substate) => substate
 );
 
 export default makeSelectNavigationContainer;

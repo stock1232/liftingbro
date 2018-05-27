@@ -5,13 +5,17 @@ import { setUserSession, userSessionFail, setUserAuth } from './actions';
 import { CHECK_USER } from './constants';
 
 
+function sessionInfo() {
+  return Auth.currentAuthenticatedUser();
+}
 function checkUserSession() {
   return Auth.currentSession();
 }
 export function* getSession() {
   try {
     if (yield call(checkUserSession)) {
-      yield put(setUserSession());
+      const user = yield call(sessionInfo);
+      yield put(setUserSession(user));
     }
   } catch (e) {
     yield put(userSessionFail(e));
