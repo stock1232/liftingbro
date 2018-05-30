@@ -18,7 +18,8 @@ import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { withStyles } from '@material-ui/core/styles';
-import { NavLink } from 'react-router';
+import { NavLink } from 'react-router-dom';
+
 
 // import styled from 'styled-components';
 
@@ -44,7 +45,8 @@ class Navigation extends React.Component {   // eslint-disable-line react/prefer
   }
 
   handleClose = () => {
-    this.setState({anchorEl: null });
+    this.setState({ anchorEl: null });
+
   }
   render() {
     const { user, classes, logout } = this.props;
@@ -95,7 +97,9 @@ class Navigation extends React.Component {   // eslint-disable-line react/prefer
                 >
                   {!user.get('isAutheniticated') ?
                   <span>
+                  <NavLink to="/login">
                   <MenuItem onClick={this.handleClose}>Log In</MenuItem>
+                  </NavLink>
                   <MenuItem onClick={this.handleClose}>Sign Up</MenuItem>
                   </span>
                   :

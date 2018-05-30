@@ -48,9 +48,13 @@ export function user(state = userInitialState, action) {
     case SET_USER_AUTH:
       return state.set('isAutheniticating', false);
     case CHECK_USER_SUCCEEDED:
-      return state;
+      return state
+       .set('isAutheniticated', true)
+       .set('isAutheniticating', false);
     case USER_LOGOUT_SUCCESS:
-      return state;
+      return state
+        .set('isAutheniticated', action.checked)
+        .set('SessionInfo', null);
     default:
       return state;
   }

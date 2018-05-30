@@ -16,13 +16,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
+import { withRouter } from 'react-router-dom';
 
 
 import injectSaga from 'utils/injectSaga';
 import Routes from '../Routes';
 import saga from './saga';
 import { checkUser } from './actions';
-import { makeSelectCurrentUser } from './selectors';
+import { makeSelectCurrentUser, makeSelectLocation } from './selectors';
 import NavigationContainer from '../NavigationContainer/Loadable';
 
 class App extends React.Component {
@@ -50,6 +51,7 @@ App.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   user: makeSelectCurrentUser(),
+  location: makeSelectLocation(),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -65,6 +67,7 @@ const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 
 export default compose(
+  withRouter,
   withSaga,
   withConnect,
 )(App);

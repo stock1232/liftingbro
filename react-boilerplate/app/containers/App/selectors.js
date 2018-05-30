@@ -16,7 +16,7 @@ const selectRoute = (state) => state.get('route');
 
 const makeSelectLocation = () => createSelector(
   selectRoute,
-  (routeState) => routeState.get('location').toJS()
+  (routeState) => routeState.get('location')
 );
 
 const makeSelectCurrentUser = () => createSelector(
