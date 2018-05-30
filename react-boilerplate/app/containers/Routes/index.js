@@ -10,6 +10,7 @@ import { Switch, Route } from 'react-router-dom';
 import HomePage from '../HomePage/Loadable';
 import NotFoundPage from '../NotFoundPage/Loadable';
 import LoginContainer from '../LoginContainer/Loadable';
+import SignUpContainer from '../SignUpContainer/Loadable';
 import AuthRouter from '../../components/AuthRouter';
 import UnAuthRouter from '../../components/UnAuthRouter';
 
@@ -22,7 +23,8 @@ function Routes({ user }) { // eslint-disable-line react/prefer-stateless-functi
   return (
     <Switch>
       <Route exact path="/" component={HomePage} />
-      <Route path="/login" component={LoginContainer} />
+      <UnAuthRouter path="/login" component={LoginContainer} />
+      <UnAuthRouter path="/signup" component={SignUpContainer} />
       <UnAuthRouter path="" component={NotFoundPage} props={user} />
     </Switch>
   );
