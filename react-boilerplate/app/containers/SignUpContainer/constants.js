@@ -4,4 +4,4 @@
  *
  */
 
-export const DEFAULT_ACTION = 'app/SignUpContainer/DEFAULT_ACTION';
+export const ONCHANGE_SIGNUP = 'app/SignUpContainer/ONCHANGE_SIGNUP';

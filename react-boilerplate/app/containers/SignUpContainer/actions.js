@@ -5,11 +5,20 @@
  */
 
 import {
-  DEFAULT_ACTION,
+  SUBMIT_SIGNUP,
 } from './constants';
 
-export function defaultAction() {
+export function submitSignUp(values) {
   return {
-    type: DEFAULT_ACTION,
+    type: SUBMIT_SIGNUP,
+    user: {
+      username: values.get('email'),
+      password: values.get('password'),
+      attributes: {
+        firstname: values.get('firstName'),
+        lastname: values.get('lastName'),
+        usertype: values.get('userType'),
+      },
+    },
   };
 }

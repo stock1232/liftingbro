@@ -100,7 +100,9 @@ class Navigation extends React.Component {   // eslint-disable-line react/prefer
                   <NavLink to="/login">
                   <MenuItem onClick={this.handleClose}>Log In</MenuItem>
                   </NavLink>
+                  <NavLink to="/signup">
                   <MenuItem onClick={this.handleClose}>Sign Up</MenuItem>
+                  </NavLink>
                   </span>
                   :
                   <span>

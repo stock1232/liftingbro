@@ -15,11 +15,14 @@ import injectReducer from 'utils/injectReducer';
 import makeSelectSignUpContainer from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import SignIn from '../../components/SignIn';
+import { submitSignUp } from './actions';
 
 export class SignUpContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
       <div>
+        <SignIn handleSubmit={submitSignUp}/>
       </div>
     );
   }
@@ -35,7 +38,7 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+    submitSignUp: (values) => dispatch(submitSignUp(values)),
   };
 }
 

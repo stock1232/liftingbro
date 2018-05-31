@@ -23,8 +23,8 @@ function Routes({ user }) { // eslint-disable-line react/prefer-stateless-functi
   return (
     <Switch>
       <Route exact path="/" component={HomePage} />
-      <UnAuthRouter path="/login" component={LoginContainer} />
-      <UnAuthRouter path="/signup" component={SignUpContainer} />
+      <UnAuthRouter path="/login" props={user} component={LoginContainer} />
+      <UnAuthRouter path="/signup" props={user} component={SignUpContainer} />
       <UnAuthRouter path="" component={NotFoundPage} props={user} />
     </Switch>
   );
