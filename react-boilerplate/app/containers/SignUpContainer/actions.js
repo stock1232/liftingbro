@@ -6,6 +6,7 @@
 
 import {
   SUBMIT_SIGNUP,
+  SIGNUP_SUCCESS,
 } from './constants';
 
 export function submitSignUp(values) {
@@ -20,5 +21,12 @@ export function submitSignUp(values) {
         usertype: values.get('userType'),
       },
     },
+  };
+}
+
+export function signupSuccess(data) {
+  return {
+    type: SUBMIT_SIGNUP,
+    data,
   };
 }

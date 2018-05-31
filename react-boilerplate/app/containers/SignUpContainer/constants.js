@@ -4,4 +4,5 @@
  *
  */
 
-export const ONCHANGE_SIGNUP = 'app/SignUpContainer/ONCHANGE_SIGNUP';
+export const SUBMIT_SIGNUP = 'app/SignUpContainer/SUBMIT_SIGNUP';
+export const SIGNUP_SUCCESS = 'app/SignUpContainer/SIGNUP_SUCCESS';
