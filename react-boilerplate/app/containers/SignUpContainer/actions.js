@@ -16,9 +16,9 @@ export function submitSignUp(values) {
       username: values.get('email'),
       password: values.get('password'),
       attributes: {
-        firstname: values.get('firstName'),
-        lastname: values.get('lastName'),
-        usertype: values.get('userType'),
+        'custom:firstname': values.get('firstName'),
+        'custom:lastname': values.get('lastName'),
+        'custom:usertype': values.get('userType'),
       },
     },
   };
@@ -26,7 +26,7 @@ export function submitSignUp(values) {
 
 export function signupSuccess(data) {
   return {
-    type: SUBMIT_SIGNUP,
+    type: SIGNUP_SUCCESS,
     data,
   };
 }

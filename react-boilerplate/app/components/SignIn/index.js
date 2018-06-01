@@ -63,7 +63,7 @@ function SignIn({ handleSubmit, submitting, cancelLogin, submitErrors, dirty, pr
           <MenuItem value="Client" primarytext="Client">Client</MenuItem>
           <MenuItem value="Advanced Lifter" primarytext="Advanced Lifter">Advanced Lifter</MenuItem>
         </Field>
-
+        {submitErrors.get('message')}
       </form>
       <div>
         <Button variant="raised" color="primary" type="submit" onClick={handleSubmit} disabled={submitting}>Submit</Button>

@@ -12,7 +12,7 @@ import { compose } from 'redux';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import makeSelectSignUpContainer from './selectors';
+import { makeSelectSignUpContainer, makeSelectSignupForm } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import SignIn from '../../components/SignIn';
@@ -22,18 +22,20 @@ export class SignUpContainer extends React.Component { // eslint-disable-line re
   render() {
     return (
       <div>
-        <SignIn handleSubmit={submitSignUp}/>
+        <SignIn onSubmit={this.props.submitSignUp} submitErrors={this.props.submitErrors} />
       </div>
     );
   }
 }
 
 SignUpContainer.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  submitSignUp: PropTypes.func.isRequired,
+  submitErrors: PropTypes.string,
 };
 
 const mapStateToProps = createStructuredSelector({
   signupcontainer: makeSelectSignUpContainer(),
+  signup: makeSelectSignupForm(),
 });
 
 function mapDispatchToProps(dispatch) {
