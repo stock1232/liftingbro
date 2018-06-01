@@ -7,6 +7,7 @@ import { combineReducers } from 'redux-immutable';
 import { LOCATION_CHANGE } from 'react-router-redux';
 import { SET_USER_SESSION, SET_USER_AUTH, SET_USER_LOGOUT, USER_LOGOUT_SUCCESS } from 'containers/App/constants';
 import { CHECK_USER_SUCCEEDED } from 'containers/LoginContainer/constants';
+import { SIGNUP_SUCCESS } from 'containers/SignUpContainer/constants';
 
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
 
@@ -24,6 +25,7 @@ const userInitialState = Map({
   isAutheniticated: false,
   isAutheniticating: true,
   SessionInfo: null,
+  newUser: null,
 });
 
 /**
@@ -55,6 +57,9 @@ export function user(state = userInitialState, action) {
       return state
         .set('isAutheniticated', action.checked)
         .set('SessionInfo', null);
+    case SIGNUP_SUCCESS:
+      return state
+        .set('newUser', action.newUser);
     default:
       return state;
   }

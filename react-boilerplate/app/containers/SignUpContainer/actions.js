@@ -7,6 +7,7 @@
 import {
   SUBMIT_SIGNUP,
   SIGNUP_SUCCESS,
+  CONFIRM_SIGNUP,
 } from './constants';
 
 export function submitSignUp(values) {
@@ -24,9 +25,16 @@ export function submitSignUp(values) {
   };
 }
 
-export function signupSuccess(data) {
+export function signupSuccess(newUser) {
   return {
     type: SIGNUP_SUCCESS,
-    data,
+    newUser,
+  };
+}
+
+export function confirmSignUp(value) {
+  return {
+    type: CONFIRM_SIGNUP,
+    confirmcode: value,
   };
 }

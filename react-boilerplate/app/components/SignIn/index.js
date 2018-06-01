@@ -76,7 +76,14 @@ function SignIn({ handleSubmit, submitting, cancelLogin, submitErrors, dirty, pr
 }
 
 SignIn.propTypes = {
-
+  handleSubmit: PropTypes.func.isRequired,
+  submitting: PropTypes.bool.isRequired,
+  cancelLogin: PropTypes.func,
+  submitErrors: PropTypes.object,
+  dirty: PropTypes.bool,
+  pristine: PropTypes.bool,
+  valid: PropTypes.bool,
+  invalid: PropTypes.bool,
 };
 
 export default reduxForm({
