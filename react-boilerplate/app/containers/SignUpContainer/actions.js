@@ -25,16 +25,17 @@ export function submitSignUp(values) {
   };
 }
 
-export function signupSuccess(newUser) {
+export function signupSuccess(newUser, profileUser) {
   return {
     type: SIGNUP_SUCCESS,
     newUser,
+    profileUser,
   };
 }
 
 export function confirmSignUp(value) {
   return {
     type: CONFIRM_SIGNUP,
-    confirmcode: value,
+    confirmcode: value.get('confirmcode'),
   };
 }

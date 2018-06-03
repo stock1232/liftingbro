@@ -5,16 +5,22 @@
  */
 
 import { fromJS } from 'immutable';
+
 import {
-  DEFAULT_ACTION,
+  SIGNUP_SUCCESS,
 } from './constants';
 
-const initialState = fromJS({});
+const initialState = fromJS({
+  newUser: null,
+  profileUser: null,
+});
 
 function signUpContainerReducer(state = initialState, action) {
   switch (action.type) {
-    case DEFAULT_ACTION:
-      return state;
+    case SIGNUP_SUCCESS:
+      return state
+        .set('newUser', fromJS(action.newUser))
+        .set('profileUser', fromJS(action.profileUser));
     default:
       return state;
   }

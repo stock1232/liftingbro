@@ -3,7 +3,8 @@ import { Auth } from 'aws-amplify';
 import { stopSubmit } from 'redux-form';
 import { SUBMIT_SIGNUP, CONFIRM_SIGNUP } from './constants';
 import { signupSuccess } from './actions';
-import { makeSelectCurrentUser } from '../App/selectors';
+import { makeSelectSignUpContainer } from './selectors';
+
 
 function signup(user) {
   return Auth.signUp({ ...user, attributes: { ...user.attributes } });
@@ -11,7 +12,7 @@ function signup(user) {
 function* userSignUp(action) {
   try {
     const newUser = yield call(signup, action.user);
-    yield put(signupSuccess(newUser));
+    yield put(signupSuccess(newUser, action.user));
   } catch (e) {
     yield put(stopSubmit('signup', e));
   }
@@ -22,9 +23,9 @@ function code(username, confirmcode) {
 }
 function* confirmCode(action) {
   try {
-    const { newUser } = yield select(makeSelectCurrentUser());
-    const confirmuser = yield call(code, newUser.get('username'), action.confirmCode);
-    console.log(confirmuser);
+    const state = yield select(makeSelectSignUpContainer());
+    yield call(code, state.getIn(['profileUser', 'username']), action.confirmcode);
+
   } catch (e) {
     yield put(stopSubmit('confirm', e));
   }
