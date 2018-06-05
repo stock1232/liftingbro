@@ -11,15 +11,15 @@ import {
 } from './constants';
 
 const initialState = fromJS({
-  newUser: false,
-  profileUser: false,
+  newUser: null,
+  profileUser: null,
 });
 
 function signUpContainerReducer(state = initialState, action) {
   switch (action.type) {
     case SIGNUP_SUCCESS:
       return state
-        .set('newUser', action.newUser)
+        .set('newUser', true)
         .set('profileUser', action.profileUser);
     default:
       return state;

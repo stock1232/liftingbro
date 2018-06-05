@@ -33,7 +33,7 @@ const selectSignupForm = () => (state) => ({
 
 const makeSelectSignUpContainer = () => createSelector(
   selectSignUpContainerDomain,
-  (substate) => substate
+  (substate) => substate.get('newUser'),
 );
 
 const makeSelectSignupForm = () => createSelector(

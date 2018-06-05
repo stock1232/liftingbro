@@ -15,18 +15,17 @@ import injectReducer from 'utils/injectReducer';
 import { makeSelectSignUpContainer, makeSelectSignupForm } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import SignIn from '../../components/SignIn';
+import SignIn from '../../components/SignIn/Loadable';
 import { submitSignUp, confirmSignUp } from './actions';
-import Confirm from '../../components/Confirm';
+import Confirm from '../../components/Confirm/Loadable';
 
 export class SignUpContainer extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
 
     return (
       <div>
-        {this.props.newUser.get('newUser') ? <Confirm onSubmit={this.props.confirmSignUp} />
-          : <SignIn onSubmit={this.props.submitSignUp} submitErrors={this.props.signup.submitErrors} /> }
-
+        {this.props.submittedUser ? <Confirm onSubmit={this.props.confirmSignUp} />
+        : <SignIn onSubmit={this.props.submitSignUp} submitErrors={this.props.signup.submitErrors} />}
       </div>
     );
   }
@@ -36,11 +35,11 @@ SignUpContainer.propTypes = {
   submitSignUp: PropTypes.func.isRequired,
   confirmSignUp: PropTypes.func.isRequired,
   signup: PropTypes.object,
-  newUser: PropTypes.object,
+  submittedUser: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
-  newUser: makeSelectSignUpContainer(),
+  submittedUser: makeSelectSignUpContainer(),
   signup: makeSelectSignupForm(),
 });
 

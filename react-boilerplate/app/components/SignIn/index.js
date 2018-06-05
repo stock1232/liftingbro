@@ -8,11 +8,26 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form/immutable';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
-import Icon from '@material-ui/core/Icon';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 
 // import styled from 'styled-components';
+
+const validate = (values) => {
+  const errors = {};
+  const requiredFields = ['email', 'password', 'firstName', 'lastName', 'userType'];
+
+  requiredFields.forEach((field) => {
+    if (!values.get(field)) {
+      errors[field] = 'Required';
+    }
+  });
+
+  if (values.get('email') && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.get('email'))) {
+    errors.email = 'Invalid email address';
+  }
+  return errors;
+};
 
 const renderTextField = ({
   input,
@@ -34,7 +49,8 @@ const renderTextField = ({
   </div>
 );
 
-const renderSelectField = ({ input, label, meta: { touched, error }, children, ...custom }) => (
+const renderSelectField = ({ input, label, warning, meta: { touched, error }, children, ...custom }) => (
+<div>
   <TextField
     select
     label={label}
@@ -46,6 +62,11 @@ const renderSelectField = ({ input, label, meta: { touched, error }, children, .
     margin="normal"
     {...custom}
   />
+  <div>
+  {touched &&
+    ((error && <span style={{fontSize: '12px'}} >{error}</span>) || (warning && <span>{warning}</span>))}
+  </div>
+</div>
 );
 
 
@@ -88,4 +109,5 @@ SignIn.propTypes = {
 
 export default reduxForm({
   form: 'signup',
+  validate,
 })(SignIn);

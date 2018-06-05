@@ -8,10 +8,7 @@
 import { SET_USER_LOGOUT,
          USER_LOGOUT_SUCCESS,
 } from '../App/constants';
-import {
-         HANDLE_MENU,
-         HANDLE_CLOSE,
-} from './constants';
+
 
 export function logout(checked) {
   return {
@@ -27,15 +24,4 @@ export function userLogOutSuccess(checked) {
   };
 }
 
-export function handleMenu(event) {
-  return {
-    type: HANDLE_MENU,
-    anchorEl: event.currentTarget,
-  };
-}
 
-export function handleClose() {
-  return {
-    type: HANDLE_CLOSE,
-  }
-}
