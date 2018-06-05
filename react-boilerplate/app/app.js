@@ -16,7 +16,7 @@ import { ConnectedRouter } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
 import Amplify from 'aws-amplify';
 import config from 'config.js';
-import 'sanitize.css/sanitize.css';
+
 
 // Import root app
 import App from 'containers/App';

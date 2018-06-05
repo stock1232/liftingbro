@@ -30,7 +30,7 @@
 .actionContainer {
   display: flex;
   justify-content: flex-end;
-  margin-top: 50ps;
+  margin-top: 50px;
 }
 
 .button {
@@ -38,7 +38,7 @@
   padding: 10px;
   border-radius: 2;
   cursor: pointer;
-  color: red;
+  color: white;
 
  &:hover {
    background-color: rgba(0, 0, 0, 0.05);

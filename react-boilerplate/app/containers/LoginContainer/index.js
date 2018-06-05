@@ -24,11 +24,12 @@ class LoginContainer extends React.Component { // eslint-disable-line react/pref
     save: PropTypes.func.isRequired,
     login: PropTypes.object,
   }
+
   render() {
     const { login } = this.props;
     return (
       <div>
-        <Login onSubmit={this.props.save} submitErrors={login.submitErrors} {...this.props} />
+        <Login onSubmit={this.props.save} submitting={this.props.logincontainer.get('submitting')} submitErrors={login.submitErrors} {...this.props} />
       </div>
     );
   }
@@ -42,7 +43,8 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     cancelLogin: () => dispatch(cancelLogin()),
-    save: (values) => dispatch(signIn(values)),
+    save: (values) => {dispatch(signIn(values));
+    },
   };
 }
 

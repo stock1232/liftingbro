@@ -13,7 +13,8 @@ import TextField from '@material-ui/core/TextField';
 import styles from './styles.css';
 
 
-// import styled from 'styled-components';
+
+
 const renderTextField = ({
   input,
   label,
@@ -50,6 +51,8 @@ const validate = (values) => {
 };
 
 function Login({ handleSubmit, submitting, cancelLogin, submitErrors, dirty, pristine, valid, invalid }) {
+  const text = 'Log In';
+  const loadingtext = 'Logging In';
   return (
     <div className={styles.login}>
       <div className={styles.heading}>
@@ -61,12 +64,10 @@ function Login({ handleSubmit, submitting, cancelLogin, submitErrors, dirty, pri
           </div>
         </form>
         <div className={styles.actionContainer}>
-             <div>
-                <Button variant="raised" color="primary" className={styles.button} type="submit" onClick={handleSubmit} disabled={submitting}>Submit</Button>
-             </div>
-             <div>
-                <Button variant="raised" color="secondary"className={styles.button} onClick={cancelLogin} type="text" disabled={submitting}>Cancel</Button>
-             </div>
+                <Button variant="raised" color="primary" className={styles.button} type="submit" onClick={handleSubmit} disabled={submitting}>{!submitting ? text : loadingtext} </Button>
+
+                <Button variant="raised" color="secondary" className={styles.button} onClick={cancelLogin} type="text" disabled={submitting}>Go Back</Button>
+
         </div>
       </div>
     </div>

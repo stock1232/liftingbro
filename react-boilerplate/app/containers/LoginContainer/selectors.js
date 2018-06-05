@@ -6,6 +6,7 @@ import {
   isPristine,
   isValid,
   isInvalid,
+  isSubmitting,
 } from 'redux-form/immutable';
 
 /**
@@ -23,6 +24,7 @@ const selectLoginForm = () => (state) => ({
   pristine: isPristine('login')(state),
   valid: isValid('login')(state),
   invalid: isInvalid('login')(state),
+  submitting: isSubmitting('login')(state),
 });
 
 /**
